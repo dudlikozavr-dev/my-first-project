@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -NoProfile -Command \"Get-Process | Sort-Object WorkingSet -Descending | Select-Object -First 8 Name, @{N=''RAM_MB'';E={[math]::Round\\($_WorkingSet/1MB,0\\)}} | Format-Table -AutoSize\")"
+    ]
+  }
+}
