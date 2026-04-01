@@ -48,8 +48,8 @@
       color: var(--cream);
       font-family: 'Jost', sans-serif;
       font-weight: 300;
-      font-size: clamp(0.95rem, 2vw, 1.05rem);
-      line-height: 1.7;
+      font-size: clamp(1.05rem, 2.5vw, 1.1rem);
+      line-height: 1.75;
       overflow-x: hidden;
     }
 
@@ -73,7 +73,7 @@
     }
 
     .section-title {
-      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-size: clamp(2rem, 5vw, 3rem);
       margin-bottom: 0.5rem;
     }
 
@@ -94,7 +94,7 @@
 
     .section-sub {
       color: var(--muted);
-      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      font-size: clamp(1.05rem, 2.5vw, 1.15rem);
       margin-bottom: 3rem;
     }
 
@@ -589,7 +589,11 @@
       justify-content: center;
       padding: 0 12px;
       z-index: 3;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
+    .product-thumbs::-webkit-scrollbar { display: none; }
     .thumb {
       width: 44px; height: 44px;
       border-radius: 8px;
@@ -1755,6 +1759,8 @@
               <div class="thumb" data-src="Halaty/141/IMG_2196.jpg"><img src="Halaty/141/IMG_2196.jpg" alt=""></div>
               <div class="thumb" data-src="Halaty/141/IMG_2202.jpg"><img src="Halaty/141/IMG_2202.jpg" alt=""></div>
               <div class="thumb" data-src="Halaty/141/IMG_2210.jpg"><img src="Halaty/141/IMG_2210.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/141/IMG_2215.jpg"><img src="Halaty/141/IMG_2215.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/141/IMG_2452.jpg"><img src="Halaty/141/IMG_2452.jpg" alt=""></div>
             </div>
             <div class="product-badge">One Size · 44–52</div>
           </div>
@@ -1779,6 +1785,8 @@
               <div class="thumb" data-src="Halaty/4/IMG_2271.jpg"><img src="Halaty/4/IMG_2271.jpg" alt=""></div>
               <div class="thumb" data-src="Halaty/4/IMG_2276.jpg"><img src="Halaty/4/IMG_2276.jpg" alt=""></div>
               <div class="thumb" data-src="Halaty/4/IMG_2283.jpg"><img src="Halaty/4/IMG_2283.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/4/IMG_2278.jpg"><img src="Halaty/4/IMG_2278.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/4/IMG_2288.jpg"><img src="Halaty/4/IMG_2288.jpg" alt=""></div>
             </div>
             <div class="product-badge">One Size · 44–52</div>
           </div>
@@ -1803,6 +1811,8 @@
               <div class="thumb" data-src="Halaty/5/IMG_2086.jpg"><img src="Halaty/5/IMG_2086.jpg" alt=""></div>
               <div class="thumb" data-src="Halaty/5/IMG_2092.jpg"><img src="Halaty/5/IMG_2092.jpg" alt=""></div>
               <div class="thumb" data-src="Halaty/5/IMG_2296.jpg"><img src="Halaty/5/IMG_2296.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/5/IMG_2094_1.jpg"><img src="Halaty/5/IMG_2094_1.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/5/IMG_2303.jpg"><img src="Halaty/5/IMG_2303.jpg" alt=""></div>
             </div>
             <div class="product-badge">One Size · 44–52</div>
           </div>
@@ -1827,6 +1837,8 @@
               <div class="thumb" data-src="Halaty/11/Also9_12.01.25_12901.jpg"><img src="Halaty/11/Also9_12.01.25_12901.jpg" alt=""></div>
               <div class="thumb" data-src="Halaty/11/Also9_12.01.25_12905.jpg"><img src="Halaty/11/Also9_12.01.25_12905.jpg" alt=""></div>
               <div class="thumb" data-src="Halaty/11/Also9_12.01.25_12913.jpg"><img src="Halaty/11/Also9_12.01.25_12913.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/11/Also9_12.01.25_12910.jpg"><img src="Halaty/11/Also9_12.01.25_12910.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/11/Also9_12.01.25_12914.jpg"><img src="Halaty/11/Also9_12.01.25_12914.jpg" alt=""></div>
             </div>
             <div class="product-badge">One Size · 44–52</div>
           </div>
@@ -1851,6 +1863,8 @@
               <div class="thumb" data-src="Halaty/2/IMG_2223.jpg"><img src="Halaty/2/IMG_2223.jpg" alt=""></div>
               <div class="thumb" data-src="Halaty/2/IMG_2228.jpg"><img src="Halaty/2/IMG_2228.jpg" alt=""></div>
               <div class="thumb" data-src="Halaty/2/IMG_2235.jpg"><img src="Halaty/2/IMG_2235.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/2/IMG_2230.jpg"><img src="Halaty/2/IMG_2230.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/2/IMG_2242.jpg"><img src="Halaty/2/IMG_2242.jpg" alt=""></div>
             </div>
             <div class="product-badge">One Size · 44–52</div>
           </div>
@@ -2002,6 +2016,15 @@
             <span>Свободный кимоно</span>
           </div>
         </div>
+      </div>
+      <div class="size-chart-wrap reveal" style="max-width:600px;margin:0 auto 40px;">
+        <p style="text-align:center;color:var(--muted);font-size:0.95rem;margin-bottom:16px;">Размерная сетка</p>
+        <img
+          src="Halaty/razmer-halata.webp"
+          alt="Размерная сетка халата кимоно"
+          style="width:100%;border-radius:16px;border:1px solid var(--border);display:block;"
+          loading="lazy"
+        >
       </div>
       <div class="text-center reveal">
         <p style="color:var(--muted);margin-bottom:20px;font-size:0.95rem;">Остались вопросы по посадке?</p>
