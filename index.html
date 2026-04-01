@@ -1490,6 +1490,7 @@
       backdrop-filter: blur(0px);
       transition: background 0.3s ease, backdrop-filter 0.3s ease;
       pointer-events: none;
+      overflow: hidden;
     }
     .lightbox.open {
       background: rgba(0,0,0,0.92);
@@ -1517,6 +1518,23 @@
       display: block;
       border-radius: 12px;
       box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+    }
+
+    /* Скрываем кнопки пока лайтбокс закрыт */
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next,
+    .lightbox-counter {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .lightbox.open .lightbox-close,
+    .lightbox.open .lightbox-prev,
+    .lightbox.open .lightbox-next,
+    .lightbox.open .lightbox-counter {
+      opacity: 1;
+      pointer-events: all;
     }
 
     .lightbox-close {
@@ -1888,7 +1906,7 @@
         </div>
       </div>
       <div class="material-desc reveal">
-        <p>Изысканный халат женский шёлковый создан для того, чтобы подарить тебе чувство роскоши и комфорта в домашних условиях. Длинный покрой кимоно идеально впишется в гардероб, а универсальный дизайн подходит для любого времени года.</p>
+        <p>Надеваешь — и сразу другое настроение. Лёгкий искусственный шёлк приятен на коже, не мнётся и не греет лишнего. Покрой кимоно скрывает всё лишнее и подчёркивает силуэт. Носи дома, встречай гостей или просто балуй себя — всё это про него.</p>
         <div class="specs-row">
           <span class="spec-chip">Материал: искусственный шёлк</span>
           <span class="spec-chip">Вес: 200 г</span>
@@ -2187,7 +2205,7 @@
       <div class="footer-grid">
         <div>
           <div class="footer-logo">Кимоно</div>
-          <p class="footer-desc">Женские халаты кимоно из искусственного шёлка. Д��ставка по всей России. Консультант на связи в Telegram и Max.</p>
+          <p class="footer-desc">Женские халаты кимоно из искусственного шёлка. Доставка по всей России. Консультант на связи в Telegram и Max.</p>
         </div>
         <div>
           <div class="footer-col-title">Навигация</div>
