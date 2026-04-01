@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Халаты Кимоно — Женские шёлковые халаты с доставкой по России</title>
   <meta name="description" content="Женские халаты кимоно из искусственного шёлка. One Size 44–52. Доставка по всей России. Оплата при получении в Москве.">
+  <meta property="og:title" content="Халаты Кимоно — Женские шёлковые халаты с доставкой по России">
+  <meta property="og:description" content="Женские халаты кимоно из искусственного шёлка. One Size 44–52. 5 цветов. Доставка по всей России.">
+  <meta property="og:image" content="Halaty/4/4.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -265,6 +271,29 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .nav-burger { display: flex; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: rgba(13,10,15,0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        padding: 20px 24px;
+        gap: 20px;
+        animation: nav-drop 0.25s ease;
+      }
+      @keyframes nav-drop {
+        from { opacity: 0; transform: translateY(-8px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .nav-links.open a { font-size: 1rem; color: var(--cream); }
+
+      /* Бургер → крестик */
+      .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     }
 
     /* ============================================================
@@ -1242,7 +1271,7 @@
       padding: 13px 16px;
       color: var(--cream);
       font-family: 'Jost', sans-serif;
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 300;
       outline: none;
       transition: border-color 0.2s, background 0.2s;
@@ -2296,6 +2325,24 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ─── БУРГЕР-МЕНЮ (МОБИЛЬНЫЕ) ───
+    const burger   = document.getElementById('burger');
+    const navMenu  = document.querySelector('.nav-links');
+    if (burger && navMenu) {
+      burger.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('open');
+        burger.classList.toggle('open', isOpen);
+        burger.setAttribute('aria-expanded', isOpen);
+      });
+      // Закрываем при клике на пункт меню
+      navMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          navMenu.classList.remove('open');
+          burger.classList.remove('open');
+        });
+      });
+    }
 
     // ─── ПЛАВНЫЙ СКРОЛЛ ПО МЕНЮ С ОТСТУПОМ ОТ NAVBAR ───
     document.querySelectorAll('a[href^="#"]').forEach(a => {
