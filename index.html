@@ -1985,47 +1985,63 @@
         <h2 class="section-title reveal">Один размер — <span class="gradient-text">для всех</span></h2>
         <p class="section-sub reveal reveal-delay-1">Универсальный One Size подходит для 44–52. Свободный крой с поясом — сидит на любой фигуре.</p>
       </div>
-      <div class="size-block glass reveal" style="max-width:520px;margin:0 auto 40px;padding:48px;text-align:left;">
-        <div style="text-align:center;margin-bottom:32px;">
-          <div class="size-big">ONE SIZE</div>
-          <div class="size-range">Подходит на размеры 44 – 52</div>
+      <!-- Два блока рядом: таблица + фото -->
+      <div class="sizes-grid reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:960px;margin:0 auto 40px;align-items:start;">
+
+        <!-- Таблица замеров -->
+        <div class="size-block glass" style="padding:40px;text-align:left;">
+          <div style="text-align:center;margin-bottom:28px;">
+            <div class="size-big">ONE SIZE</div>
+            <div class="size-range">Подходит на размеры 44 – 52</div>
+          </div>
+          <div class="size-details">
+            <div class="size-row">
+              <span>Российский стандарт</span>
+              <span>44 – 52</span>
+            </div>
+            <div class="size-row">
+              <span>Подходящий рост</span>
+              <span>155 – 180 см</span>
+            </div>
+            <div class="size-row">
+              <span>Длина халата</span>
+              <span>127 см (до щиколотки)</span>
+            </div>
+            <div class="size-row">
+              <span>Ширина</span>
+              <span>144 см</span>
+            </div>
+            <div class="size-row">
+              <span>Пояс</span>
+              <span>Регулирует посадку по талии</span>
+            </div>
+            <div class="size-row">
+              <span>Крой</span>
+              <span>Свободный кимоно</span>
+            </div>
+          </div>
         </div>
-        <div class="size-details">
-          <div class="size-row">
-            <span>Российский стандарт</span>
-            <span>44 – 52</span>
-          </div>
-          <div class="size-row">
-            <span>Подходящий рост</span>
-            <span>155 – 180 см</span>
-          </div>
-          <div class="size-row">
-            <span>Длина халата</span>
-            <span>127 см (до щиколотки)</span>
-          </div>
-          <div class="size-row">
-            <span>Ширина</span>
-            <span>144 см</span>
-          </div>
-          <div class="size-row">
-            <span>Пояс</span>
-            <span>Регулирует посадку по талии</span>
-          </div>
-          <div class="size-row">
-            <span>Крой</span>
-            <span>Свободный кимоно</span>
-          </div>
+
+        <!-- Фото размерной сетки -->
+        <div class="glass" style="padding:16px;border-radius:var(--r-lg);">
+          <p style="text-align:center;color:var(--muted);font-size:0.88rem;margin-bottom:12px;letter-spacing:0.04em;text-transform:uppercase;">Размерная сетка</p>
+          <img
+            src="Halaty/razmer-halata.webp"
+            alt="Размерная сетка халата кимоно"
+            style="width:100%;border-radius:12px;display:block;"
+            loading="lazy"
+          >
         </div>
+
       </div>
-      <div class="size-chart-wrap reveal" style="max-width:600px;margin:0 auto 40px;">
-        <p style="text-align:center;color:var(--muted);font-size:0.95rem;margin-bottom:16px;">Размерная сетка</p>
-        <img
-          src="Halaty/razmer-halata.webp"
-          alt="Размерная сетка халата кимоно"
-          style="width:100%;border-radius:16px;border:1px solid var(--border);display:block;"
-          loading="lazy"
-        >
-      </div>
+
+      <!-- Медиазапрос: на мобильных — одна колонка -->
+      <style>
+        @media (max-width: 680px) {
+          .sizes-grid { grid-template-columns: 1fr !important; }
+        }
+      </style>
+
       <div class="text-center reveal">
         <p style="color:var(--muted);margin-bottom:20px;font-size:0.95rem;">Остались вопросы по посадке?</p>
         <a href="https://t.me/USERNAME" class="btn btn-outline" target="_blank">Спросить Елену в Telegram</a>
