@@ -537,17 +537,43 @@
       transition: opacity 0.5s ease, transform 0.6s ease;
     }
 
-    .product-img-wrap .img-hover {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .product-img-wrap .img-hover img { width: 100%; height: 100%; object-fit: cover; }
+    .product-card:hover .img-main img { transform: scale(1.04); }
 
-    .product-card:hover .img-main { opacity: 0; }
-    .product-card:hover .img-hover { opacity: 1; }
-    .product-card:hover .img-main img { transform: scale(1.05); }
+    /* Градиент под превью */
+    .product-img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 90px;
+      background: linear-gradient(to top, rgba(13,10,15,0.72), transparent);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Полоска превью */
+    .product-thumbs {
+      position: absolute;
+      bottom: 10px;
+      left: 0; right: 0;
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      padding: 0 12px;
+      z-index: 3;
+    }
+    .thumb {
+      width: 44px; height: 44px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      opacity: 0.55;
+      transition: opacity 0.2s ease, border-color 0.25s ease, transform 0.2s ease;
+      flex-shrink: 0;
+    }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; display: block; }
+    .thumb.active { opacity: 1; border-color: var(--gold); }
+    .thumb:hover  { opacity: 1; border-color: rgba(212,168,67,0.7); transform: translateY(-2px); }
 
     /* Placeholder */
     .product-placeholder {
@@ -1566,8 +1592,11 @@
             <div class="img-main">
               <img src="Halaty/141/141.jpg" alt="Халат кимоно Чёрный с магнолиями" onerror="this.parentElement.innerHTML=placeholderHTML('Чёрный с магнолиями')">
             </div>
-            <div class="img-hover">
-              <img src="Halaty/141/IMG_2196.jpg" alt="Халат кимоно Чёрный с магнолиями — вид 2" onerror="this.style.display='none'">
+            <div class="product-thumbs">
+              <div class="thumb active" data-src="Halaty/141/141.jpg"><img src="Halaty/141/141.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/141/IMG_2196.jpg"><img src="Halaty/141/IMG_2196.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/141/IMG_2202.jpg"><img src="Halaty/141/IMG_2202.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/141/IMG_2210.jpg"><img src="Halaty/141/IMG_2210.jpg" alt=""></div>
             </div>
             <div class="product-badge">One Size · 44–52</div>
           </div>
@@ -1587,8 +1616,11 @@
             <div class="img-main">
               <img src="Halaty/4/4.jpg" alt="Халат кимоно Айвори с ветвями" onerror="this.parentElement.innerHTML=placeholderHTML('Айвори с ветвями')">
             </div>
-            <div class="img-hover">
-              <img src="Halaty/4/IMG_2271.jpg" alt="Халат кимоно Айвори с ветвями — вид 2" onerror="this.style.display='none'">
+            <div class="product-thumbs">
+              <div class="thumb active" data-src="Halaty/4/4.jpg"><img src="Halaty/4/4.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/4/IMG_2271.jpg"><img src="Halaty/4/IMG_2271.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/4/IMG_2276.jpg"><img src="Halaty/4/IMG_2276.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/4/IMG_2283.jpg"><img src="Halaty/4/IMG_2283.jpg" alt=""></div>
             </div>
             <div class="product-badge">One Size · 44–52</div>
           </div>
@@ -1608,8 +1640,11 @@
             <div class="img-main">
               <img src="Halaty/5/5.jpg" alt="Халат кимоно Розовый Forever Lovers" onerror="this.parentElement.innerHTML=placeholderHTML('Розовый Forever Lovers')">
             </div>
-            <div class="img-hover">
-              <img src="Halaty/5/IMG_2086.jpg" alt="Халат кимоно Розовый — вид 2" onerror="this.style.display='none'">
+            <div class="product-thumbs">
+              <div class="thumb active" data-src="Halaty/5/5.jpg"><img src="Halaty/5/5.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/5/IMG_2086.jpg"><img src="Halaty/5/IMG_2086.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/5/IMG_2092.jpg"><img src="Halaty/5/IMG_2092.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/5/IMG_2296.jpg"><img src="Halaty/5/IMG_2296.jpg" alt=""></div>
             </div>
             <div class="product-badge">One Size · 44–52</div>
           </div>
@@ -1629,8 +1664,11 @@
             <div class="img-main">
               <img src="Halaty/11/11.jpg" alt="Халат кимоно Бордовый с сакурой" onerror="this.parentElement.innerHTML=placeholderHTML('Бордовый с сакурой')">
             </div>
-            <div class="img-hover">
-              <img src="Halaty/11/Also9_12.01.25_12901.jpg" alt="Халат кимоно Бордовый — вид 2" onerror="this.style.display='none'">
+            <div class="product-thumbs">
+              <div class="thumb active" data-src="Halaty/11/11.jpg"><img src="Halaty/11/11.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/11/Also9_12.01.25_12901.jpg"><img src="Halaty/11/Also9_12.01.25_12901.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/11/Also9_12.01.25_12905.jpg"><img src="Halaty/11/Also9_12.01.25_12905.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/11/Also9_12.01.25_12913.jpg"><img src="Halaty/11/Also9_12.01.25_12913.jpg" alt=""></div>
             </div>
             <div class="product-badge">One Size · 44–52</div>
           </div>
@@ -1650,8 +1688,11 @@
             <div class="img-main">
               <img src="Halaty/2/2.jpg" alt="Халат кимоно Чёрный с ботаникой" onerror="this.parentElement.innerHTML=placeholderHTML('Чёрный с ботаникой')">
             </div>
-            <div class="img-hover">
-              <img src="Halaty/2/IMG_2223.jpg" alt="Халат кимоно Чёрный с ботаникой — вид 2" onerror="this.style.display='none'">
+            <div class="product-thumbs">
+              <div class="thumb active" data-src="Halaty/2/2.jpg"><img src="Halaty/2/2.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/2/IMG_2223.jpg"><img src="Halaty/2/IMG_2223.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/2/IMG_2228.jpg"><img src="Halaty/2/IMG_2228.jpg" alt=""></div>
+              <div class="thumb" data-src="Halaty/2/IMG_2235.jpg"><img src="Halaty/2/IMG_2235.jpg" alt=""></div>
             </div>
             <div class="product-badge">One Size · 44–52</div>
           </div>
@@ -2162,6 +2203,29 @@
       });
     }, { threshold: 0.6 });
     document.querySelectorAll('.hero-stat-num').forEach(el => statsObserver.observe(el));
+
+    // ─── ГАЛЕРЕЯ ПРЕВЬЮ В КАРТОЧКАХ ───
+    document.querySelectorAll('.product-thumbs').forEach(thumbsWrap => {
+      const wrap     = thumbsWrap.closest('.product-img-wrap');
+      const mainImg  = wrap.querySelector('.img-main img');
+      const thumbs   = thumbsWrap.querySelectorAll('.thumb');
+
+      function setActive(thumb) {
+        thumbs.forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImg.style.transition = 'opacity 0.25s ease';
+        mainImg.style.opacity = '0';
+        setTimeout(() => {
+          mainImg.src = thumb.dataset.src;
+          mainImg.style.opacity = '1';
+        }, 120);
+      }
+
+      thumbs.forEach(thumb => {
+        thumb.addEventListener('mouseenter', () => setActive(thumb));
+        thumb.addEventListener('click',      () => setActive(thumb));
+      });
+    });
 
     // ─── CARD TILT + SHINE ───
     document.querySelectorAll('.product-card').forEach(card => {
