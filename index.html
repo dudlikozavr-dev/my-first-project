@@ -78,18 +78,7 @@
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #d4a843, #e8b4b8, #c9748a, #f0c060, #d4a843);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradient-shift 6s ease infinite;
-    }
-
-    @keyframes gradient-shift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      color: var(--gold);
     }
 
     .section-sub {
@@ -201,10 +190,7 @@
     .nav-logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.3rem;
-      background: linear-gradient(135deg, #d4a843, #c9748a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--gold);
     }
     .nav-links {
       display: flex;
@@ -389,12 +375,7 @@
 
     .hero-title em {
       font-style: italic;
-      background: linear-gradient(135deg, #d4a843, #e8b4b8, #c9748a, #f0c060, #d4a843);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradient-shift 5s ease infinite;
+      color: var(--gold);
     }
 
     @keyframes hero-appear {
@@ -410,7 +391,6 @@
     }
 
     .hero-tagline {
-      font-family: 'Playfair Display', serif;
       font-style: italic;
       color: var(--blush);
       font-size: clamp(0.95rem, 2vw, 1.1rem);
@@ -479,7 +459,7 @@
 
     .trust-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
     }
 
@@ -521,9 +501,9 @@
     }
 
     @media (max-width: 900px) {
-      .trust-grid { grid-template-columns: repeat(3, 1fr); }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 480px) {
       .trust-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
@@ -737,8 +717,8 @@
     .material-icon svg { width: 28px; height: 28px; }
 
     .material-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
+      font-weight: 500;
+      font-size: 1.05rem;
       margin-bottom: 10px;
       color: var(--cream);
     }
@@ -918,8 +898,8 @@
     .delivery-icon svg { width: 28px; height: 28px; }
 
     .delivery-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
+      font-weight: 600;
+      font-size: 1.15rem;
       margin-bottom: 20px;
     }
 
@@ -1129,8 +1109,8 @@
       border-bottom: 1px solid var(--border);
     }
     .cart-header h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
     }
     .cart-close {
       background: rgba(240,232,216,0.08);
@@ -1339,8 +1319,8 @@
     }
 
     .summary-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
+      font-weight: 600;
+      font-size: 1rem;
       margin-bottom: 20px;
       padding-bottom: 16px;
       border-bottom: 1px solid var(--border);
@@ -1399,10 +1379,7 @@
     .footer-logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
-      background: linear-gradient(135deg, #d4a843, #c9748a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--gold);
       margin-bottom: 12px;
     }
 
@@ -1720,13 +1697,6 @@
         </div>
         <div class="trust-item glass reveal reveal-delay-2">
           <div class="trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div class="trust-title">При получении</div>
-          <div class="trust-sub">Только курьером по Москве</div>
-        </div>
-        <div class="trust-item glass reveal reveal-delay-3">
-          <div class="trust-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
           </div>
           <div class="trust-title">Возврат 14 дней</div>
@@ -1929,7 +1899,7 @@
         </div>
       </div>
       <div class="material-desc reveal">
-        <p>Надеваешь — и сразу другое настроение. Лёгкий искусственный шёлк приятен на коже, не мнётся и не греет лишнего. Покрой кимоно скрывает всё лишнее и подчёркивает силуэт. Носи дома, встречай гостей или просто балуй себя — всё это про него.</p>
+        <p>Надеваешь — и сразу другое настроение. Лёгкий искусственный шёлк мягкий на коже, не мнётся и комфортен в любое время года. Покрой кимоно скрывает всё лишнее и подчёркивает силуэт. Носи дома, встречай гостей или просто балуй себя — всё это про него.</p>
         <div class="specs-row">
           <span class="spec-chip">Материал: искусственный шёлк</span>
           <span class="spec-chip">Вес: 200 г</span>
