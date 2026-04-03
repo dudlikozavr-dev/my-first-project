@@ -1295,6 +1295,8 @@
       font-size: 0.9rem;
     }
     .checkbox-item input { accent-color: var(--gold); width: 16px; height: 16px; cursor: pointer; }
+    #submitBtn:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+    #submitBtn:not(:disabled) { opacity: 1; }
 
     .payment-info {
       padding: 16px;
@@ -2155,7 +2157,16 @@
                 <span>Добавить подарочную упаковку (бесплатно)</span>
               </label>
             </div>
-            <button type="submit" class="btn btn-primary" id="submitBtn" style="width:100%;justify-content:center;">
+            <div class="form-group" style="margin-bottom:16px;">
+              <label class="checkbox-item" style="align-items:flex-start;gap:10px;">
+                <input type="checkbox" id="consentCheck" style="margin-top:3px;flex-shrink:0;" onchange="document.getElementById('submitBtn').disabled=!this.checked;">
+                <span style="font-size:0.85rem;line-height:1.5;">
+                  Согласие на обработку <a href="privacy.html" target="_blank" style="color:var(--gold);text-decoration:underline;">персональных данных</a> *<br>
+                  <span style="color:var(--muted);font-size:0.8rem;">Настоящим подтверждаю, что я ознакомлен и согласен с условиями <a href="oferta.html" target="_blank" style="color:var(--muted);text-decoration:underline;">оферты</a> и <a href="privacy.html" target="_blank" style="color:var(--muted);text-decoration:underline;">политики конфиденциальности</a>.</span>
+                </span>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submitBtn" disabled style="width:100%;justify-content:center;opacity:0.5;transition:opacity 0.2s;">
               Оформить заказ
             </button>
           </form>
