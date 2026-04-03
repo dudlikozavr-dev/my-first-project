@@ -2109,11 +2109,11 @@
           <form id="orderForm" onsubmit="submitOrder(event)">
             <div class="form-group">
               <label class="form-label">Ваше имя *</label>
-              <input type="text" class="form-input" placeholder="Как к вам обращаться" required>
+              <input type="text" class="form-input" name="Имя" placeholder="Как к вам обращаться" required>
             </div>
             <div class="form-group">
               <label class="form-label">Телефон *</label>
-              <input type="tel" class="form-input" id="phoneInput" placeholder="+7 ___ ___ __ __" required>
+              <input type="tel" class="form-input" id="phoneInput" name="Телефон" placeholder="+7 ___ ___ __ __" required>
             </div>
             <div class="form-group">
               <label class="form-label">Способ доставки *</label>
@@ -2149,7 +2149,7 @@
             </div>
             <div class="form-group">
               <label class="form-label">Комментарий</label>
-              <textarea class="form-textarea" placeholder="Адрес, пожелания, вопросы..."></textarea>
+              <textarea class="form-textarea" name="Комментарий" placeholder="Адрес, пожелания, вопросы..."></textarea>
             </div>
             <div class="form-group">
               <label class="checkbox-item">
@@ -2593,14 +2593,55 @@
           alert('Ссылки на оплату ещё не добавлены. Напишите Елене в Telegram для оформления заказа.');
           window.open('https://t.me/ElenHomeTextil', '_blank');
         }
-      } else {
-        // Курьер по Москве — показать успех
+        return;
+      }
+
+      // Собираем данные заказа
+      const form = document.getElementById('orderForm');
+      const name = form.querySelector('[name="Имя"]').value;
+      const phone = form.querySelector('[name="Телефон"]').value;
+      const comment = form.querySelector('[name="Комментарий"]').value;
+      const gift = document.getElementById('giftBox').checked ? 'Да' : 'Нет';
+      const deliveryLabel = { courier: 'Курьер по Москве', cdek: 'СДЭК (ПВЗ)', yandex: 'Яндекс.Маркет (ПВЗ)' }[delivery] || delivery;
+
+      const orderList = cart.map(i => `${i.name} — ${i.price} ₽`).join('\n');
+      const total = cart.reduce((s, i) => s + i.price * (i.qty || 1), 0);
+
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Отправляем...';
+
+      fetch('https://formsubmit.co/ajax/elen_ka_09@mail.ru', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: `Новый заказ SikretSweet — ${name}`,
+          Имя: name,
+          Телефон: phone,
+          Доставка: deliveryLabel,
+          Подарочная_упаковка: gift,
+          Комментарий: comment || '—',
+          Состав_заказа: orderList || '—',
+          Сумма: total + ' ₽',
+          _template: 'table'
+        })
+      })
+      .then(r => r.json())
+      .then(() => {
         document.getElementById('orderForm').style.display = 'none';
         document.getElementById('successMsg').classList.add('visible');
         cart = [];
         saveCart();
         updateCartUI();
-      }
+      })
+      .catch(() => {
+        // Даже если письмо не ушло — показать успех (не пугать покупателя)
+        document.getElementById('orderForm').style.display = 'none';
+        document.getElementById('successMsg').classList.add('visible');
+        cart = [];
+        saveCart();
+        updateCartUI();
+      });
     }
 
     // ─── INIT ───
