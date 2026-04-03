@@ -2611,19 +2611,16 @@
       btn.disabled = true;
       btn.textContent = 'Отправляем...';
 
-      fetch('https://formsubmit.co/ajax/elen_ka_09@mail.ru', {
+      fetch('/send.php', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: `Новый заказ SikretSweet — ${name}`,
-          Имя: name,
-          Телефон: phone,
-          Доставка: deliveryLabel,
-          Подарочная_упаковка: gift,
-          Комментарий: comment || '—',
-          Состав_заказа: orderList || '—',
-          Сумма: total + ' ₽',
-          _template: 'table'
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          name, phone,
+          delivery: deliveryLabel,
+          gift,
+          comment: comment || '—',
+          order: orderList || '—',
+          total: total + ' ₽'
         })
       })
       .then(r => r.json())
