@@ -1,7 +1,7 @@
 <?php
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'u3472092_sikret');
-define('DB_USER', 'u3472092_sikret');
+define('DB_USER', 'u3472092_Karzum');
 define('DB_PASS', '12081977Den!');
 define('DB_CHARSET', 'utf8mb4');
 
