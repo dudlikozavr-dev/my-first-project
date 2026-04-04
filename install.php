@@ -24,7 +24,11 @@ if ($ok) {
     // Убираем комментарии и выполняем по одному
     $statements = array_filter(array_map('trim', explode(';', $sql)));
     foreach ($statements as $stmt) {
-        if (empty($stmt) || str_starts_with(ltrim($stmt), '--') || str_starts_with(ltrim($stmt), 'SET')) {
+        // Убираем строки-комментарии из каждого блока
+        $lines = explode("\n", $stmt);
+        $lines = array_filter($lines, fn($l) => !str_starts_with(ltrim($l), '--'));
+        $stmt  = trim(implode("\n", $lines));
+        if (empty($stmt) || str_starts_with(ltrim($stmt), 'SET')) {
             continue;
         }
         try {
