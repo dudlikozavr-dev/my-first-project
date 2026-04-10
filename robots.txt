@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /account/
+Disallow: /includes/
+
+Sitemap: https://sikretsweet.ru/sitemap.xml
