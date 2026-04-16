@@ -1,0 +1,16 @@
+{
+  "name": "SikretSweet",
+  "short_name": "SikretSweet",
+  "description": "Женские шёлковые халаты с доставкой по России",
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#1a0b05",
+  "background_color": "#1a0b05",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
