@@ -17,18 +17,32 @@ function fetch_products() {
         }
     }
 
-    // Запрос к API
-    $api_url = 'https://app.sikretsweet.ru/api/products';
-    $opts = ['http' => [
-        'method' => 'GET',
-        'timeout' => 5,
-    ]];
-    $context = stream_context_create($opts);
-    $json = @file_get_contents($api_url, false, $context);
+    // Запрос к API через curl
+    $json = null;
+    if (function_exists('curl_init')) {
+        $api_url = 'https://app.sikretsweet.ru/api/products';
+        $ch = curl_init($api_url);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 5,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false,
+        ]);
+        $json = @curl_exec($ch);
+        curl_close($ch);
+    }
+
+    // Если curl не работает — пробуем file_get_contents
+    if (!$json && ini_get('allow_url_fopen')) {
+        $api_url = 'https://app.sikretsweet.ru/api/products';
+        $opts = ['http' => ['method' => 'GET', 'timeout' => 5]];
+        $context = stream_context_create($opts);
+        $json = @file_get_contents($api_url, false, $context);
+    }
 
     if ($json) {
         // Сохраняем в кеш
-        file_put_contents($cache_file, $json);
+        @file_put_contents($cache_file, $json);
         $data = json_decode($json, true);
         if ($data && isset($data['products'])) {
             return $data['products'];
