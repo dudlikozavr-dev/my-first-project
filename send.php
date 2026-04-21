@@ -11,6 +11,51 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 
+// API token для mini-app (из переменной окружения или хардкод)
+define('MIAMORE_API_URL', 'https://app.sikretsweet.ru/api/orders/web');
+define('MIAMORE_API_KEY', '7c2299a4813d839385aff943cffa0f153d73d56873e9a9ad639f2a2280343608');
+
+/**
+ * Отправляет заказ в API mini-app
+ * Не блокирует если API недоступен или возвращает ошибку
+ */
+function send_order_to_miamore_api(array $order_data): void {
+    $payload = [
+        'buyer_name' => $order_data['buyer_name'] ?? '',
+        'buyer_phone' => $order_data['buyer_phone'] ?? '',
+        'buyer_username' => null,
+        'buyer_telegram_id' => null,
+        'city' => '',
+        'address' => '',
+        'notes' => $order_data['notes'] ?? '',
+        'delivery_method' => $order_data['delivery_method'] ?? 'cdek',
+        'payment_method' => 'cod',
+        'items' => $order_data['items'] ?? [],
+    ];
+
+    $ch = curl_init(MIAMORE_API_URL);
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 5,
+        CURLOPT_HTTPHEADER => [
+            'Content-Type: application/json',
+            'X-Api-Key: ' . MIAMORE_API_KEY,
+        ],
+        CURLOPT_POSTFIELDS => json_encode($payload),
+    ]);
+
+    $response = @curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    // Логируем попытку (опционально)
+    if ($response && $http_code === 201) {
+        error_log("Order sent to mini-app API: " . print_r($response, true));
+    }
+    // Ошибка API не влияет на результат заказа на локальном сайте
+}
+
 $name     = trim(strip_tags($_POST['name']     ?? ''));
 $phone    = trim(strip_tags($_POST['phone']    ?? ''));
 $delivery = trim(strip_tags($_POST['delivery'] ?? ''));
@@ -52,6 +97,26 @@ try {
 } catch (Exception $e) {
     // Продолжаем даже если БД недоступна
 }
+
+// Отправляем заказ в API mini-app (не блокируем если ошибка)
+$items_for_api = [];
+foreach ($items as $item) {
+    $items_for_api[] = [
+        'product_name' => $item['name'],
+        'qty' => $item['qty'] ?? 1,
+        'unit_price' => (int)$item['price'],
+        'size' => '',  // не передаётся из формы sikretsweet.ru
+        'color' => '',  // не передаётся из формы sikretsweet.ru
+    ];
+}
+
+send_order_to_miamore_api([
+    'buyer_name' => $name,
+    'buyer_phone' => $phone,
+    'notes' => $comment,
+    'delivery_method' => $delivery === 'Почта' ? 'post' : 'cdek',
+    'items' => $items_for_api,
+]);
 
 // Email
 $to      = 'elen_ka_09@mail.ru';
