@@ -19,6 +19,8 @@ function fetch_products() {
 
     // Запрос к API через curl
     $json = null;
+    $error = '';
+
     if (function_exists('curl_init')) {
         $api_url = 'https://app.sikretsweet.ru/api/products';
         $ch = curl_init($api_url);
@@ -28,8 +30,15 @@ function fetch_products() {
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_SSL_VERIFYHOST => false,
         ]);
-        $json = @curl_exec($ch);
+        $json = curl_exec($ch);
+        if ($json === false) {
+            $error = 'curl_error: ' . curl_error($ch);
+            error_log('API fetch failed: ' . $error);
+        }
         curl_close($ch);
+    } else {
+        $error = 'curl_not_available';
+        error_log('curl не установлен на хостинге');
     }
 
     // Если curl не работает — пробуем file_get_contents
@@ -37,7 +46,12 @@ function fetch_products() {
         $api_url = 'https://app.sikretsweet.ru/api/products';
         $opts = ['http' => ['method' => 'GET', 'timeout' => 5]];
         $context = stream_context_create($opts);
-        $json = @file_get_contents($api_url, false, $context);
+        $json = file_get_contents($api_url, false, $context);
+        if ($json === false) {
+            error_log('file_get_contents failed');
+        }
+    } elseif (!$json && !ini_get('allow_url_fopen')) {
+        error_log('allow_url_fopen отключен');
     }
 
     if ($json) {
@@ -48,6 +62,8 @@ function fetch_products() {
             return $data['products'];
         }
     }
+
+    error_log('Используются fallback товары');
 
     // Fallback: статические товары
     return [
